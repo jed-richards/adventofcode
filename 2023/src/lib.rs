@@ -3,6 +3,7 @@ mod common {
     pub use std::io::{BufReader, Result, BufRead};
 
     pub fn read_lines(path: &str) -> Result<Vec<String>> {
+        // Create File object
         let file = File::open(path)?;
 
         // Create a buffered reader to efficiently read lines
@@ -14,10 +15,15 @@ mod common {
     }
 
     pub fn read_example_answer(path: &str) -> u32 {
-        let answer_lines = read_lines(path).unwrap();
-        let answer = answer_lines.get(0)
+        let answer_lines = match read_lines(path) {
+            Ok(lines) => lines,
+            Err(_) => panic!("Failed to read example answer file."),
+        };
+        let answer = answer_lines
+            .get(0)
             .unwrap()
             .parse::<u32>();
+
         return answer.unwrap();
     }
 }
