@@ -3,7 +3,7 @@ use aoc::read_lines;
 #[allow(dead_code)]
 struct Solution {
     lines: Vec<String>,
-    games: Vec<Game>
+    max_color_count_list: Vec<CubeCount>
 }
 
 struct CubeCount {
@@ -20,11 +20,11 @@ impl CubeCount {
 #[allow(dead_code)]
 struct Game {
     game_id: u32,
-    cube_combinations: Vec<CubeCount>,
+    cube_combinations: Vec<Vec<CubeCount>>,
 }
 
 impl Game {
-    fn new(game_id: u32, cube_combinations: Vec<CubeCount>) -> Self {
+    fn new(game_id: u32, cube_combinations: Vec<Vec<CubeCount>>) -> Self {
         return Self {game_id, cube_combinations};
     }
 }
